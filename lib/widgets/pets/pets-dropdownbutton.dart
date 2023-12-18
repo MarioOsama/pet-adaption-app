@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adaption_app/main.dart';
 
-class AnimalsDropdownButton extends StatefulWidget {
-  const AnimalsDropdownButton({super.key});
+class PetsDropdownButton extends StatefulWidget {
+  const PetsDropdownButton({super.key});
 
   @override
-  State<AnimalsDropdownButton> createState() => _AnimalsDropdownButtonState();
+  State<PetsDropdownButton> createState() => _AnimalsDropdownButtonState();
 }
 
-class _AnimalsDropdownButtonState extends State<AnimalsDropdownButton> {
+class _AnimalsDropdownButtonState extends State<PetsDropdownButton> {
   String _selectedItem = 'Dog';
 
   void onChooseAnimal(item) {

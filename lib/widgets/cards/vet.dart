@@ -9,7 +9,8 @@ class VetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width * 50 / 100;
+    // get 50% of screen width
+    final double width = MediaQuery.of(context).size.width * 50 / 100;
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -84,7 +85,7 @@ class VetCard extends StatelessWidget {
                   'Book Now',
                   style: Theme.of(context)
                       .textTheme
-                      .titleMedium!
+                      .titleLarge!
                       .copyWith(color: Colors.white),
                 ),
               )

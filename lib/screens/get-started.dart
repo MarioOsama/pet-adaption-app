@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adaption_app/main.dart';
 import 'package:pet_adaption_app/widgets/animated-container.dart';
-import 'package:pet_adaption_app/widgets/login.dart';
+import 'package:pet_adaption_app/widgets/register.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});
@@ -12,6 +12,7 @@ class GetStartedScreen extends StatefulWidget {
 
 class _GetStartedScreenState extends State<GetStartedScreen> {
   bool _isGetStarted = true;
+  double _sizedBoxHeight = 30.0;
   late double _height;
 
   @override
@@ -24,6 +25,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
     setState(() {
       if (_isGetStarted) _height = 375;
       _isGetStarted = false;
+      _sizedBoxHeight = 20.0;
     });
   }
 
@@ -34,8 +36,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
       child: Column(
         children: [
           CustomAnimatedContainer(height: _height),
-          const SizedBox(
-            height: 25,
+          SizedBox(
+            height: _sizedBoxHeight,
           ),
           Text(
             'Re-Home and \n   Adopt a Pet',
@@ -45,8 +47,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
             'Adopt me, we both need the love',
             style: Theme.of(context).textTheme.bodySmall,
           ),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: _sizedBoxHeight,
           ),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 500),
@@ -71,7 +73,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   'Get Started',
                   style: Theme.of(context).textTheme.bodyMedium,
                 )),
-            secondChild: const LogInWidget(),
+            secondChild: const RegisterWidget(),
           ),
         ],
       ),

@@ -36,6 +36,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  cloud_firestore: ^4.13.6
+  google_sign_in: ^6.2.0
+  uuid: 4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -68,9 +73,12 @@ flutter:
     - assets/images/grooming-image.png
     - assets/images/dog.png
     - assets/images/dog-face.png
+    - assets/images/dog-card.png
     - assets/images/cat.png
     - assets/images/cat-face.png
+    - assets/images/cat-card.png
     - assets/images/vat-image.png
+    - assets/images/join-community-card.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

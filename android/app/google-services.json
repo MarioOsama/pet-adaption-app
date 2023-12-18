@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "72341903465",
+    "project_id": "pet-adaption-app",
+    "storage_bucket": "pet-adaption-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72341903465:android:bb709515f38f5357b5aaf8",
+        "android_client_info": {
+          "package_name": "com.example.pet_adaption_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72341903465-kubtf2mlmb5h9fcf34hn1m0rlv7ls1vj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACtZtEPUF8n_sqhZ1HxXkjhb6N00FiTAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72341903465-kubtf2mlmb5h9fcf34hn1m0rlv7ls1vj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

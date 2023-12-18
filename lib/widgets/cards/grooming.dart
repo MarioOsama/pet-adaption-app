@@ -60,7 +60,7 @@ class GroomingCard extends StatelessWidget {
                 ),
                 label: Text(
                   'Reserve',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 icon: const Icon(
                   Icons.book_online,
