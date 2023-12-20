@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:pet_adaption_app/main.dart';
 import 'package:pet_adaption_app/models/story.dart';
 import 'package:pet_adaption_app/widgets/timer-bar.dart';
@@ -34,11 +36,23 @@ class StoryItem extends StatelessWidget {
         return Stack(
           children: [
             // story image
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(storyData.imageLink),
-                  fit: BoxFit.fitWidth,
+            CachedNetworkImage(
+              imageUrl: storyData.imageLink,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) => const LinearProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              // Cache manager for image
+              cacheManager: CacheManager(
+                Config(
+                  storyData.imageLink,
+                  stalePeriod: const Duration(days: 7),
                 ),
               ),
             ),
@@ -70,9 +84,6 @@ class StoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // get screen width
-    final double width = MediaQuery.of(context).size.width;
-
     // make container clickable
     return InkWell(
       borderRadius: BorderRadius.circular(100.0),
@@ -83,17 +94,26 @@ class StoryItem extends StatelessWidget {
         _onShowStory(context: context);
       },
       // container for image
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 1.2 * width / 100),
-        width: 80,
-        decoration: BoxDecoration(
-          // container image
-          image: DecorationImage(
-            image: NetworkImage(storyData.imageLink),
-            fit: BoxFit.cover,
+      child: CachedNetworkImage(
+        imageUrl: storyData.imageLink,
+        imageBuilder: (context, imageProvider) => Container(
+          width: 100,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
+            border: Border.all(color: foregroundColor, width: 3.0),
+            shape: BoxShape.circle,
           ),
-          border: Border.all(color: foregroundColor, width: 3.0),
-          shape: BoxShape.circle,
+        ),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+        // Cache manager for image
+        cacheManager: CacheManager(
+          Config(
+            storyData.imageLink,
+            stalePeriod: const Duration(days: 7),
+          ),
         ),
       ),
     );

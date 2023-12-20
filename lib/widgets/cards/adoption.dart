@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:pet_adaption_app/main.dart';
 import 'package:pet_adaption_app/models/adoptable-pet.dart';
 import 'package:pet_adaption_app/screens/pet-details.dart';
@@ -29,12 +31,24 @@ class AdoptionCard extends StatelessWidget {
             // Pet image
             Hero(
               tag: pet.images[0],
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0),
-                  image: DecorationImage(
-                      image: NetworkImage(pet.images[0]), fit: BoxFit.fitWidth),
+              child: CachedNetworkImage(
+                imageUrl: pet.images[0],
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                // Cache manager for image
+                cacheManager: CacheManager(
+                  Config(
+                    pet.images[0],
+                    stalePeriod: const Duration(days: 7),
+                  ),
                 ),
               ),
             ),

@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class PetImagesCarousel extends StatefulWidget {
   const PetImagesCarousel({Key? key, required this.images}) : super(key: key);
@@ -63,13 +65,33 @@ class _PetImagesCarouselState extends State<PetImagesCarousel> {
           ),
           duration: const Duration(milliseconds: 250),
           margin: margin,
+          // Hero tag
           child: Hero(
             tag: petImages[pagePosition],
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                petImages[pagePosition],
-                fit: BoxFit.fitWidth,
+              // Pet CachedNetworkImage
+              child: CachedNetworkImage(
+                imageUrl: petImages[pagePosition],
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                // Cache manager for image
+                cacheManager: CacheManager(
+                  Config(
+                    petImages[pagePosition],
+                    stalePeriod: const Duration(days: 7),
+                  ),
+                ),
               ),
             ),
           ),

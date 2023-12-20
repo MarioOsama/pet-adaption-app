@@ -40,6 +40,9 @@ dependencies:
   firebase_auth: ^4.15.3
   cloud_firestore: ^4.13.6
   google_sign_in: ^6.2.0
+  readmore: ^2.2.0
+  cached_network_image: ^3.3.0
+  flutter_cache_manager: ^3.3.1
   uuid: 4.2.2
 
 dev_dependencies:

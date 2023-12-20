@@ -15,6 +15,7 @@ class StoriesList extends StatelessWidget {
           // horizontal scrolling effect
           scrollDirection: Axis.horizontal,
           itemBuilder: (ctx, index) {
+            // build a StoryItem
             return StoryItem(storyData: dummyStoriesData[index]);
           }),
     );

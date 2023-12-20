@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pet_adaption_app/main.dart';
 import 'package:pet_adaption_app/models/adoptable-pet.dart';
 import 'package:pet_adaption_app/widgets/pets/pet-images-carousel.dart';
+import 'package:readmore/readmore.dart';
 
 class PetDetailsScreen extends StatelessWidget {
   const PetDetailsScreen({super.key, required this.pet});
@@ -10,13 +11,12 @@ class PetDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double sizedBoxHeight = 10.0;
+    const double sizedBoxHeight = 15.0;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      // App bar
       appBar: AppBar(
           elevation: 5,
           shadowColor: Colors.black,
-          backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
           centerTitle: true,
           title: const Text(
@@ -33,7 +33,7 @@ class PetDetailsScreen extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,27 +76,43 @@ class PetDetailsScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(3.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
-                      color: foregroundColor,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Details: ',
+                        Text('About: ',
                             style: Theme.of(context).textTheme.labelMedium),
                         const SizedBox(
-                          height: sizedBoxHeight,
+                          height: sizedBoxHeight / 3,
                         ),
-                        Text(pet.description,
+                        ReadMoreText(pet.description,
+                            trimLines: 2,
+                            colorClickableText: foregroundColor,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Show more',
+                            trimExpandedText: 'less',
+                            moreStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold),
+                            lessStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold),
                             style: Theme.of(context)
                                 .textTheme
-                                .labelSmall!
-                                .copyWith(fontSize: 12.0)),
+                                .labelMedium!
+                                .copyWith(overflow: TextOverflow.ellipsis)),
                       ],
                     ),
                   ),
 
                   const SizedBox(
-                    height: sizedBoxHeight,
+                    height: sizedBoxHeight * 2,
                   ),
 
                   // Adopt button
